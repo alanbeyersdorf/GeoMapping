@@ -6,7 +6,7 @@ lat = list(data["LAT"])
 lon = list(data["LON"])
 elev = list(data["ELEV"])
 
-map = folium.Map(location=[41.65, -83.53], zoom_start=6, tiles="Stamen Terrain")
+map = folium.Map(location=[48.65, -121.53], zoom_start=6, tiles="Stamen Terrain")
 
 fg = folium.FeatureGroup(name="My Map")
 
@@ -19,7 +19,7 @@ fg = folium.FeatureGroup(name="My Map")
 # 3 and 6
 
 for lt, ln, el in zip(lat, lon, elev):
-    fg.add_child(folium.Marker(location=[lt, ln], popup=el, icon=folium.Icon(color="green")))
+    fg.add_child(folium.Marker(location=[lt, ln], popup="Elevation is " + str(el) + " meters or " + str(el*3.28084) + " feet!", icon=folium.Icon(color="green")))
 
 map.add_child(fg)
 
