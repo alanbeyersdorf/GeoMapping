@@ -16,7 +16,7 @@ def color_producer(elevation):
 
 map = folium.Map(location=[48.65, -121.53], zoom_start=6) #,tiles="Stamen Terrain")
 
-fg = folium.FeatureGroup(name="My Map")
+fgv = folium.FeatureGroup(name="Volcanoes")
 
 # how zips work:
 # for i, j in zip([1,2,3], [4,5,6]):
@@ -29,15 +29,21 @@ fg = folium.FeatureGroup(name="My Map")
 #changed layout of variables for readability
 
 for lt, ln, el in zip(lat, lon, elev):
-    fg.add_child(folium.CircleMarker(location=[lt, ln],
+    fgv.add_child(folium.CircleMarker(location=[lt, ln],
                                 radius = 6,
                                 popup="Elevation is " + str(el) + " meters or " + str(el*3.28084) + " feet!",
                                 fill_color=color_producer(el),
                                 color = 'grey', fill_opacity=0.7))
 
-fg.add_child(folium.GeoJson(data=open('world.json', 'r', encoding='utf-8-sig').read(),
+fgp = folium.FeatureGroup(name="Population")
+
+fgp.add_child(folium.GeoJson(data=open('world.json', 'r', encoding='utf-8-sig').read(),
     style_function=lambda x: {'fillColor':'green' if x['properties']['POP2005'] < 10000000
     else 'orange' if 10000000 <= x['properties']['POP2005'] < 20000000 else 'red'}))
 
-map.add_child(fg)
+
+map.add_child(fgv)
+map.add_child(fgp)
+map.add_child(folium.LayerControl())
+
 map.save("Map1.html")
