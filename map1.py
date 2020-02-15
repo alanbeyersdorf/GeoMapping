@@ -29,9 +29,11 @@ fg = folium.FeatureGroup(name="My Map")
 #changed layout of variables for readability
 
 for lt, ln, el in zip(lat, lon, elev):
-    fg.add_child(folium.Marker(location=[lt, ln],
+    fg.add_child(folium.CircleMarker(location=[lt, ln],
+                                radius = 6,
                                 popup="Elevation is " + str(el) + " meters or " + str(el*3.28084) + " feet!",
-                                icon=folium.Icon(color=color_producer(el))))
+                                fill_color=color_producer(el),
+                                color = 'grey', fill_opacity=0.7))
 
 map.add_child(fg)
 
