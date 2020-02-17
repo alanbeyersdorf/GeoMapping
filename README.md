@@ -1,5 +1,7 @@
 # GeoMapping
 
+# note: I did not code any of the HTML file. It is a product of folium. It updates in conjuction with any updates to the map1.py file.
+
 This is a python project is built off an example application from Ardit Sulce's Udemy Course "The Python Mega Course" 
 @ https://www.udemy.com/course/the-python-mega-course/
 
