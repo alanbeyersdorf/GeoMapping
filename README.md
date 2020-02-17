@@ -1,6 +1,6 @@
 # GeoMapping
 
-# map1.py is the tutorial file
+# map1.py is the tutorial file I completed in the Udemy class
 # OWK_sampling_stations.py is my file in progress
 
 This is a python project is built off an example application from Ardit Sulce's Udemy Course "The Python Mega Course" 
