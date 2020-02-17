@@ -18,4 +18,6 @@ for lt, ln in zip(lat, lon):
 
 map.add_child(fg)
 
+map.add_child(folium.LayerControl())
+
 map.save("OWK_sampling_stations.html")
