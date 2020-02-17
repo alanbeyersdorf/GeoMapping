@@ -6,6 +6,9 @@
 This is a python project is built off an example application from Ardit Sulce's Udemy Course "The Python Mega Course" 
 @ https://www.udemy.com/course/the-python-mega-course/
 
+For OWK_Sampling_stations.py, Old Woman Creek data sourced from: 
+NOAA National Estuarine Research Reserve System (NERRS). System-wide Monitoring Program. Data accessed from the NOAA NERRS Centralized Data Management Office website: http://cdmo.baruch.sc.edu/; accessed 12 October 2012.
+
 It is my first project using folium and pandas. 
 
 note: I did not code any of the HTML files. They are products of folium. They update in conjuction with any updates to the python files.
