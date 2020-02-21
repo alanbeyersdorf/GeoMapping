@@ -8,21 +8,35 @@ lat = list(data["Latitude "])#, #engine='python')
 lon = list(data[" Longitude"])#, #engine='python')
 name = list(data["Station Name"])
 status = list(data[" Status"])
-
+#active = list(data["Active    "])
 
 
 map = folium.Map(location=[41.378716, -82.509539], zoom_start=16)
 
 fgall = folium.FeatureGroup(name="sampling_stations")
+fgactive = folium.FeatureGroup(name="active stations")
+fginactive = folium.FeatureGroup(name="inactive stations")
 
 
-for lt, ln, nm in zip(lat, lon, name):
+for lt, ln, nm, st in zip(lat, lon, name, status):
     fgall.add_child(folium.CircleMarker(location = [lt, -(ln)],
                                     popup ="Station Name: " + str(nm),
                                     color = 'black',
                                     fill_color = 'green'))
+    if st == "Active    ":
+        fgactive.add_child(folium.CircleMarker(location = [lt, -(ln)],
+                                    popup = "Station Name: " + str(nm),
+                                    color = 'black',
+                                    fill_color = 'green'))
+    if st == "Inactive  ":
+        fginactive.add_child(folium.CircleMarker(location = [lt, -(ln)],
+                                    popup = "Station Name: " + str(nm),
+                                    color = 'black',
+                                    fill_color = 'red'))
 
-map.add_child(fgall)
+#map.add_child(fgall)
+map.add_child(fgactive)
+map.add_child(fginactive)
 
 map.add_child(folium.LayerControl())
 
