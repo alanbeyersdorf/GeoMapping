@@ -8,6 +8,7 @@ lat = list(data["Latitude "])#, #engine='python')
 lon = list(data[" Longitude"])#, #engine='python')
 name = list(data["Station Name"])
 status = list(data[" Status"])
+#active_dates = list(data[" Active Dates"])
 #active = list(data["Active    "])
 
 
@@ -33,6 +34,8 @@ for lt, ln, nm, st in zip(lat, lon, name, status):
                                     popup = "Station Name: " + str(nm),
                                     color = 'black',
                                     fill_color = 'red'))
+
+#folium.Choropleth()
 
 #map.add_child(fgall)
 map.add_child(fgactive)
