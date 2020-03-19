@@ -5,6 +5,7 @@ data = pandas.read_csv("Volcanoes.txt")
 lat = list(data["LAT"])
 lon = list(data["LON"])
 elev = list(data["ELEV"])
+type = list(data["TYPE"])
 
 def color_producer(elevation):
     if elevation < 1000:
@@ -28,10 +29,11 @@ fgv = folium.FeatureGroup(name="Volcanoes")
 
 #changed layout of variables for readability
 
-for lt, ln, el in zip(lat, lon, elev):
+for lt, ln, el, ty in zip(lat, lon, elev, type):
     fgv.add_child(folium.CircleMarker(location=[lt, ln],
                                 radius = 6,
-                                popup="Elevation is " + str(el) + " meters or " + str(el*3.28084) + " feet!",
+                                popup="Elevation is " + str(el) + " meters or " + str(el*3.28084) + " feet!" +
+                                " Type is " + str(ty),
                                 fill_color=color_producer(el),
                                 color = 'grey', fill_opacity=0.7))
 
@@ -43,7 +45,7 @@ fgp.add_child(folium.GeoJson(data=open('world.json', 'r', encoding='utf-8-sig').
 
 
 map.add_child(fgv)
-map.add_child(fgp)
+#map.add_child(fgp)
 map.add_child(folium.LayerControl())
 
 map.save("map1.html")
