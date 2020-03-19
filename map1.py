@@ -17,7 +17,9 @@ def color_producer(elevation):
 
 map = folium.Map(location=[48.65, -121.53], zoom_start=6) #,tiles="Stamen Terrain")
 
-fgv = folium.FeatureGroup(name="Volcanoes")
+fgv = folium.FeatureGroup(name="All Volcanoes")
+fgstrato = folium.FeatureGroup(name="Stratovolcano")
+
 
 # how zips work:
 # for i, j in zip([1,2,3], [4,5,6]):
@@ -36,6 +38,13 @@ for lt, ln, el, ty in zip(lat, lon, elev, type):
                                 " Type is " + str(ty),
                                 fill_color=color_producer(el),
                                 color = 'grey', fill_opacity=0.7))
+    if ty == "Stratovolcano":
+        fgstrato.add_child(folium.CircleMarker(location=[lt, ln],
+                                    radius = 6,
+                                    popup="Elevation is " + str(el) + " meters or " + str(el*3.28084) + " feet!" +
+                                    " Type is " + str(ty),
+                                    fill_color=color_producer(el),
+                                    color = 'grey', fill_opacity=0.7))
 
 fgp = folium.FeatureGroup(name="Population")
 
@@ -46,6 +55,7 @@ fgp.add_child(folium.GeoJson(data=open('world.json', 'r', encoding='utf-8-sig').
 
 map.add_child(fgv)
 #map.add_child(fgp)
+map.add_child(fgstrato)
 map.add_child(folium.LayerControl())
 
 map.save("map1.html")
