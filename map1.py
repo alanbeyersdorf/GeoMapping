@@ -72,6 +72,22 @@ for lt, ln, el, ty in zip(lat, lon, elev, type):
                                     fill_color=color_producer(el),
                                     color = 'grey', fill_opacity=0.7))
 
+    if ty == "Cinder cones":
+        fgcinder.add_child(folium.CircleMarker(location=[lt, ln],
+                                    radius = 6,
+                                    popup="Elevation is " + str(el) + " meters or " + str(el*3.28084) + " feet!" +
+                                    " Type is " + str(ty),
+                                    fill_color=color_producer(el),
+                                    color = 'grey', fill_opacity=0.7))
+
+    if ty == "Cinder cone":
+        fgcinder.add_child(folium.CircleMarker(location=[lt, ln],
+                                    radius = 6,
+                                    popup="Elevation is " + str(el) + " meters or " + str(el*3.28084) + " feet!" +
+                                    " Type is " + str(ty),
+                                    fill_color=color_producer(el),
+                                    color = 'grey', fill_opacity=0.7))
+
 
 fgp = folium.FeatureGroup(name="Population")
 
@@ -85,6 +101,7 @@ map.add_child(fgv)
 map.add_child(fgstrato)
 map.add_child(fgfield)
 map.add_child(fgshield)
+map.add_child(fgcinder)
 map.add_child(folium.LayerControl())
 
 map.save("map1.html")
